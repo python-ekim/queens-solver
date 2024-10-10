@@ -37,13 +37,13 @@ The Computer solving it using random positions with recursive logic to solve the
 ## License
 This project is licensed under the BDMS Consulting NonCommercial License
 
-## Credits
--Very Thankful with the courses of https://edube.org/ Phython Essentials 1 & Phython Essentials 2
-
 ### Terms and Conditions
 1. **Non-Commercial Use**: This project is free to use for non-commercial purposes only. You may use, modify, and distribute the code for personal, educational, or research purposes.
 2. **Attribution**: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 3. **No Warranty**: The project is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the project or the use or other dealings in the project.
+
+## Credits
+-Very Thankful with the courses of https://edube.org/ Phython Essentials 1 & Phython Essentials 2
 
 ## Contact
 Miguel Bernadez
