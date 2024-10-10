@@ -6,7 +6,7 @@
 # each position is represented with 2 bits:
 #   00 empty square
 #   01 square attacked by a Queen
-#   10 squere with a Queen
+#   10 square with a Queen
 
 import os
 import sys
@@ -173,10 +173,6 @@ def solve_queens(number, algorythm = 0):
                 else:
                     return solve_queens(number, 1)
                     
-                    
-
-
-
 # This function prints the chess board using standard conventions
 def print_board():
     global board
