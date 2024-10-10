@@ -9,6 +9,9 @@
 #   10 squere with a Queen
 
 import os
+import sys
+import random
+import time
 
 # this function clears the screen
 def clear_screen():
@@ -139,23 +142,39 @@ def get_available():
     for row in range(1,9):
         for col in range(1,9):
             square = get_chess_notation(row, col)
-            if not get_square(square):
+            if get_square(square) == 0:
                 return square, True
 
     return "", False
 
 # This function places N Queens on the board insuring they are not attacking each other
-def solve_queens(number):
+def solve_queens(number, algorythm = 0):
     global board
     if number <= 0:
         return True, number
     else:
-        square, available = get_available()
-        if available:
-            place_queen(square)
-            return solve_queens(number - 1)
-        else:
-            return False, number
+        if algorythm == 0:
+            square, available = get_available()
+            if available:
+                place_queen(square)
+                return solve_queens(number - 1, 0)
+            else:
+                return False, number
+        elif algorythm == 1:
+            _ , available = get_available()
+            if not available:
+                return False, number
+            else:
+                row = random.randint(1, 8)
+                col = random.randint(1, 8)
+                valid, value = place_queen(get_chess_notation(row, col))
+                if valid:
+                    return solve_queens(number -1, 1)
+                else:
+                    return solve_queens(number, 1)
+                    
+                    
+
 
 
 # This function prints the chess board using standard conventions
@@ -185,22 +204,57 @@ clear_screen()
 while True:
     try:
         board = 0
+        tries = 0
         game_type = int(input("How do you want to play? (0 = Computer, 1 = Manual, 2 = Exit): "))
         assert game_type < 3
         if game_type == 0:
             number = int(input('How many Queens do you want to place in the board? '))
+            method = int(input('What algorithm? 0 for First Available, 1 for Random, 2 for Iterative: '))
             clear_screen()
             assert number > 0 and number < 9
-            valid, pending = solve_queens(number)
+            assert method >= 0 and method <= 2
+            if method == 0:
+                valid, pending = solve_queens(number, method)
+            elif method == 1:
+                valid = False
+                while not valid:
+                    board = 0
+                    tries += 1
+                    valid, pending = solve_queens(number, method)
+                print(f"After {tries} intents...")
+            elif method == 2:
+                iterations = int(input('How many iterations do you want to compute? '))
+                solutions = []
+                start_time = time.time()
+                tries = [0 for x in range(iterations)]
+                for iter in range(iterations):
+                    valid = False
+                    while not valid:
+                        board = 0
+                        tries[iter] += 1
+                        valid, pending = solve_queens(number, 1)
+                    if board not in solutions:
+                        solutions.append(board)
+                        print(f"Solution {len(solutions)} after {tries[iter]} intents")
+                        print_board()
+                end_time = time.time()
+                execution_time= end_time - start_time
+                print("\n\nHere are the statistics\n")
+                print(f"Total Execution time: {execution_time:.6f} seconds")                       
+                print(f"Total number of cycles: {iterations * sum(tries)} (iterations x tries)\n") 
+                print(f"After {iterations} iterations the computer found {len(solutions)} solutions. ")
+                print("Here is the last one...")
             print_board()
             if valid:
                 print(f"The computer placed {number} Queens on the board!")
             else:
                 print(f"Only {number - pending} Queens where placed on the board.")
+
         elif game_type == 1:
             number = 0
             while True:
                 print_board()
+                print(f"The 'board' variable has a current size of {sys.getsizeof(board)} bytes.")
                 if number:
                     print(f"{number} Queens placed on the board:")
                     suffix = "next"
