@@ -14,25 +14,31 @@ Provide a fun way to experiment human vs. computer solutions
 - Contact
 
 ## Installation
-This program uses regular Python libraries. You should not need to install anything additional.
+Make sure to install or upgrade via 
+$ pip install --upgrade matplotlib
 
 ## Usage
 The program prompts allowing you to have different experiences and do a simple comparisson of 3 algorithms:
-Your mind solving the Challenge
+A Human solving the Challenge
 The Computer solving it using a fixed algorithm placing the Queens in order
 The Computer solving it using random positions with recursive logic to solve the Challenge
+The Computer performing N iterations to find as many different solutions as possible
 
-## Features
--Bit logic to represent the chessboard using 44 bytes vs. 120 bytes for a simplier array [[0 for col in range(8)] for row in range(8)]
--Each board position is encoded using two bits to represent: 00 Empty, 01 Attacked, 10 Queen, 11 Not Used
+## Features Version 2
+-In Iterations Mode user chose to either use:
+    Bit logic to represent the chessboard using 44 bytes or
+    standar array [[0 for col in range(8)] for row in range(8)] using 120 bytes
+
+-Each board position is encoded using 00 Empty, 01 Attacked, 10 Queen, 11 Not Used
 -All the functions use Chess Standard Notation A,B,C,D,E,F,G,H for Columns 1,2,3,4,5,6,7,8 for Rows
 -Using the Interation Mode you can compute different solutions, experiment increasing the number of iterations to see the progression of time vs. number of solutions found
+-NEW in Version 2 you can Plot the results of the Iteration mode
 
 ## Contributing
+DONE -Adapt the algoritm to use a standard array [[0 for col in range(8)] for row in range(8)] to benchmark performance
+DONE -Use MathPlot to graph a curve on computing cycles vs. time comparing bit encoding vs. standard array
 -Change from text in Command Line to a GUI
--Adapt the algoritm to use a standard array [[0 for col in range(8)] for row in range(8)] to benchmark performance
--Find out if implementing ML can provide the same number of solutions using less cycles
--Use MathPlot to graph a curve on computing cycles vs. time comparing bit encoding vs. standard array
+-Find out if implementing ML can provide faster solutions using less cycles
 
 ## License
 This project is licensed under the BDMS Consulting NonCommercial License
